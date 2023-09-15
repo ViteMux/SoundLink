@@ -1,0 +1,44 @@
+<div class="card text-center m-4">
+  <div class="card-body ">
+    <h2 class="card-title">
+      <%= playlist.title %>
+        </h5>
+        <p class="card-text">
+          <%= playlist.describtion %>
+        </p>
+        <button type="button" class="btn btn-success btn-rounded">全部播放</button>
+        <button type="button" class="btn btn-secondary btn-rounded">详细介绍</button>
+  </div>
+</div>
+
+<div class="list-group list-group-light m-2 m-lg-5">
+  <% for (audio of audioList) { %>
+    <button type="button" class="list-group-item list-group-item-action px-3 border-0"
+      onclick="addAudioToPlaylist('<%- audio._id %>')">
+      <div class="fw-bold">
+        <%= audio.name %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban"
+            viewBox="0 0 16 16">
+            <path
+              d="M15 8a6.973 6.973 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8ZM2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Z" />
+          </svg>
+      </div>
+    </button>
+    <% } %>
+</div>
+</div>
+
+<script>
+  var player;
+  // add selected audio and *subconsequent* audios into playlist
+  function addAudioToPlaylist(audioId) {
+    /* Notice: In case EJS couldn't pass the value of audioList,
+    *  this script shound be placed in playlist.html. Because of
+    *  this varible only being assigned when render this html by EJS.
+    */ 
+    const audioList = <%- JSON.stringify(audioList) %>;
+    player = new Player(audioList);
+    player.skipTo(audioId);
+  }
+</script>
+
