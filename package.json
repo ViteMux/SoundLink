@@ -1,9 +1,9 @@
 {
   "name": "soundlink",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node ./src/server.js"
+    "start": "node ./src/app.js"
   },
   "author": "SoundLink",
   "license": "GNU GPL v3",
